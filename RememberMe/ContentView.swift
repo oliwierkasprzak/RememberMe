@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-     private var people = [People]()
+    @StateObject private var people = Results()
     @State private var image: Image?
     @State private var inputImage: UIImage?
+    @State private var showingPicker = false
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -18,12 +19,13 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(people) { picture in
+                    ForEach(people.results) { picture in
                         NavigationLink {
-                            DetailView()
+                            DetailView(image: image ?? Image("Example") , name: "John")
                         } label: {
                             VStack {
                                 image?
+                                    .resizable()
                                     .scaledToFit()
                                 
                                 Spacer()
@@ -51,12 +53,29 @@ struct ContentView: View {
             .navigationTitle("RememberMe")
             .toolbar {
                 Button {
-                    ImagePicker(image: $inputImage)
+                    showingPicker = true
                 } label: {
                     Image(systemName: "plus")
                 }
             }
+            .sheet(isPresented: $showingPicker) {
+                ImagePicker(image: $inputImage)
+            }
+            .onChange(of: inputImage) { _ in loadImage() }
         }
+    }
+    
+     func loadImage() {
+        guard let inputImage = inputImage else { return }
+         guard let data = inputImage.jpegData(compressionQuality: 0.8) else { print("Wrong data")
+             return
+            }
+        image = Image(uiImage: inputImage)
+         
+         let user = People(name: "John", image: data)
+         people.results.append(user)
+        
+     
     }
 }
 

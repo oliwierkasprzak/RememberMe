@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct DetailView: View {
+    var image: Image
+    var name: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            Text(name)
+                .font(.title2)
+                .fontDesign(.rounded)
+                .padding(.top, 30)
+            image
+                .resizable()
+                .scaledToFit()
+                .padding()
+            
+            Spacer()
+                
+        }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailView(image: Image("Example"), name: "John")
     }
 }

@@ -8,9 +8,19 @@
 import Foundation
 import SwiftUI
 
-struct People: Identifiable {
+class People: Identifiable, ObservableObject {
     var id = UUID()
     var name: String 
-    var image: Image?
+    var image: Data?
+    
+    init(id: UUID = UUID(), name: String, image: Data) {
+        self.id = id
+        self.name = name
+        self.image = image
+    }
+}
+
+class Results: ObservableObject {
+    var results = [People]()
 }
 
