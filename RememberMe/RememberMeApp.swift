@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct RememberMeApp: App {
+    let results = Results()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(people: .constant(results))
         }
     }
 }
