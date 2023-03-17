@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var people = Results()
+    @Binding var people: Results
     @State private var image: Image?
     @State private var inputImage: UIImage?
     @State private var showingPicker = false
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(people.results) { picture in
+                    ForEach(people.results.reversed()) { picture in
                         NavigationLink {
-                            DetailView(image: image ?? Image("Example") , name: "John")
+                            DetailView(image: Image(uiImage: UIImage(data: picture.image!)!), name: "John")
                         } label: {
                             VStack {
-                                image?
+                                Image(uiImage: UIImage(data: picture.image!)!)
                                     .resizable()
                                     .scaledToFit()
                                 
@@ -70,10 +71,13 @@ struct ContentView: View {
          guard let data = inputImage.jpegData(compressionQuality: 0.8) else { print("Wrong data")
              return
             }
-        image = Image(uiImage: inputImage)
          
-         let user = People(name: "John", image: data)
-         people.results.append(user)
+             
+             image = Image(uiImage: inputImage)
+             
+             let user = People(name: "John", image: data)
+             people.results.append(user)
+         
         
      
     }
@@ -81,6 +85,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(people: .constant(Results()))
     }
 }
