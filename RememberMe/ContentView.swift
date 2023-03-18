@@ -12,6 +12,9 @@ struct ContentView: View {
     @State private var image: Image?
     @State private var inputImage: UIImage?
     @State private var showingPicker = false
+    @State private var name = ""
+    @State private var inputName = ""
+    @State private var showingAlert = false
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -22,7 +25,7 @@ struct ContentView: View {
                 LazyVGrid(columns: columns) {
                     ForEach(people.results.reversed()) { picture in
                         NavigationLink {
-                            DetailView(image: Image(uiImage: UIImage(data: picture.image!)!), name: "John")
+                            DetailView(image: Image(uiImage: UIImage(data: picture.image!)!), name: picture.name)
                         } label: {
                             VStack {
                                 Image(uiImage: UIImage(data: picture.image!)!)
@@ -63,6 +66,12 @@ struct ContentView: View {
                 ImagePicker(image: $inputImage)
             }
             .onChange(of: inputImage) { _ in loadImage() }
+            .alert("Provide name", isPresented: $showingAlert) {
+                TextField("Provide name", text: $inputName)
+                Button("OK") {
+                    
+                }
+            }
         }
     }
     
@@ -72,10 +81,10 @@ struct ContentView: View {
              return
             }
          
-             
+             showingAlert = true
              image = Image(uiImage: inputImage)
-             
-             let user = People(name: "John", image: data)
+             name = inputName
+             let user = People(name: name, image: data)
              people.results.append(user)
          
         
