@@ -88,7 +88,7 @@ struct ContentView: View {
          
              inputName = ""
     }
-}
+    
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
