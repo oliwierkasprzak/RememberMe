@@ -12,7 +12,6 @@ struct ContentView: View {
     @State private var image: Image?
     @State private var inputImage: UIImage?
     @State private var showingPicker = false
-    @State private var name = ""
     @State private var inputName = ""
     @State private var showingAlert = false
     let columns = [
@@ -40,11 +39,11 @@ struct ContentView: View {
                                     .opacity(0.5)
                                     .padding([.trailing, .leading])
                                 
-                                Text("1")
+                                Text(picture.name)
                                     .padding(.bottom, 5)
                             }
                             .padding(.top)
-                            .frame(width: 130, height: 130)
+                            .frame(width: 150, height: 150)
                             .clipShape(RoundedRectangle(cornerRadius: 5))
                             .overlay {
                                 RoundedRectangle(cornerRadius: 10)
@@ -63,13 +62,15 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingPicker) {
-                ImagePicker(image: $inputImage)
+                ImagePicker(image: $inputImage, onDismiss: {
+                    showingAlert = true
+                    print(people.results.count)
+                })
             }
-            .onChange(of: inputImage) { _ in loadImage() }
             .alert("Provide name", isPresented: $showingAlert) {
                 TextField("Provide name", text: $inputName)
                 Button("OK") {
-                    
+                   loadImage()
                 }
             }
         }
@@ -81,14 +82,11 @@ struct ContentView: View {
              return
             }
          
-             showingAlert = true
              image = Image(uiImage: inputImage)
-             name = inputName
-             let user = People(name: name, image: data)
+             let user = People(name: inputName, image: data)
              people.results.append(user)
          
-        
-     
+             inputName = ""
     }
 }
 
