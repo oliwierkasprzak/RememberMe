@@ -11,9 +11,7 @@
 		4FA497EB29C240060051B40A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA497EA29C240060051B40A /* ContentView.swift */; };
 		4FA497ED29C240080051B40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FA497EC29C240080051B40A /* Assets.xcassets */; };
 		4FA497F129C240080051B40A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FA497F029C240080051B40A /* Preview Assets.xcassets */; };
-		4FA497F929C240200051B40A /* RememberMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FA497F729C240200051B40A /* RememberMe.xcdatamodeld */; };
 		4FA497FB29C240280051B40A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA497FA29C240280051B40A /* DetailView.swift */; };
-		4FA497FD29C240520051B40A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA497FC29C240520051B40A /* DataController.swift */; };
 		4FA497FF29C244BC0051B40A /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA497FE29C244BC0051B40A /* People.swift */; };
 		4FA4980129C246CC0051B40A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4980029C246CC0051B40A /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
@@ -25,9 +23,7 @@
 		4FA497EC29C240080051B40A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FA497EE29C240080051B40A /* RememberMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RememberMe.entitlements; sourceTree = "<group>"; };
 		4FA497F029C240080051B40A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4FA497F829C240200051B40A /* RememberMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RememberMe.xcdatamodel; sourceTree = "<group>"; };
 		4FA497FA29C240280051B40A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		4FA497FC29C240520051B40A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		4FA497FE29C244BC0051B40A /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		4FA4980029C246CC0051B40A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,9 +62,7 @@
 				4FA497EA29C240060051B40A /* ContentView.swift */,
 				4FA4980029C246CC0051B40A /* ImagePicker.swift */,
 				4FA497FE29C244BC0051B40A /* People.swift */,
-				4FA497F729C240200051B40A /* RememberMe.xcdatamodeld */,
 				4FA497FA29C240280051B40A /* DetailView.swift */,
-				4FA497FC29C240520051B40A /* DataController.swift */,
 				4FA497EC29C240080051B40A /* Assets.xcassets */,
 				4FA497EE29C240080051B40A /* RememberMe.entitlements */,
 				4FA497EF29C240080051B40A /* Preview Content */,
@@ -154,13 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FA497FD29C240520051B40A /* DataController.swift in Sources */,
 				4FA497EB29C240060051B40A /* ContentView.swift in Sources */,
 				4FA497FB29C240280051B40A /* DetailView.swift in Sources */,
 				4FA4980129C246CC0051B40A /* ImagePicker.swift in Sources */,
 				4FA497E929C240060051B40A /* RememberMeApp.swift in Sources */,
 				4FA497FF29C244BC0051B40A /* People.swift in Sources */,
-				4FA497F929C240200051B40A /* RememberMe.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +281,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your data.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the app to see your photo library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -328,6 +321,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your data.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the app to see your photo library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -376,19 +370,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4FA497F729C240200051B40A /* RememberMe.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4FA497F829C240200051B40A /* RememberMe.xcdatamodel */,
-			);
-			currentVersion = 4FA497F829C240200051B40A /* RememberMe.xcdatamodel */;
-			path = RememberMe.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4FA497DD29C240060051B40A /* Project object */;
 }
