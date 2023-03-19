@@ -70,25 +70,26 @@ struct ContentView: View {
             .alert("Provide name", isPresented: $showingAlert) {
                 TextField("Provide name", text: $inputName)
                 Button("OK") {
-                   loadImage()
+                    loadImage()
                 }
             }
         }
     }
     
-     func loadImage() {
+    func loadImage() {
         guard let inputImage = inputImage else { return }
-         guard let data = inputImage.jpegData(compressionQuality: 0.8) else { print("Wrong data")
-             return
-            }
-         
-             image = Image(uiImage: inputImage)
-             let user = People(name: inputName, image: data)
-             people.results.append(user)
-         
-             inputName = ""
+        guard let data = inputImage.jpegData(compressionQuality: 0.8) else { print("Wrong data")
+            return
+        }
+        
+        image = Image(uiImage: inputImage)
+        let user = People(name: inputName, image: data)
+        people.results.append(user)
+        
+        inputName = ""
+        //saving is shown a little in a day 68. Need to come back to it after the course.
     }
-    
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
