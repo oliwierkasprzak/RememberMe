@@ -85,9 +85,22 @@ struct ContentView: View {
         image = Image(uiImage: inputImage)
         let user = People(name: inputName, image: data)
         people.results.append(user)
+        let url = getDocumentDirectory().appendingPathComponent("people.txt")
         
+        do {
+            try inputName.write(to: url, atomically: true, encoding: .utf8)
+            try data.write(to: url, options: [.atomic, .completeFileProtection])
+        } catch {
+            print(error.localizedDescription)
+        }
         inputName = ""
-        //saving is shown a little in a day 68. Need to come back to it after the course.
+
+    }
+    
+    func getDocumentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .userDirectory, in: .userDomainMask)
+        return paths[0]
+        //dont have time today, i will finish tomorrow.
     }
 }
 
