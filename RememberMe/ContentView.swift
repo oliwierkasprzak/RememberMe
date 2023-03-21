@@ -85,10 +85,10 @@ struct ContentView: View {
         image = Image(uiImage: inputImage)
         let user = People(name: inputName, image: data)
         people.results.append(user)
-        let url = getDocumentDirectory().appendingPathComponent("people.txt")
+        let url = ContentView.getDocumentDirectory().appendingPathComponent("\(user.id.uuidString).jpg")
         
         do {
-            try inputName.write(to: url, atomically: true, encoding: .utf8)
+            try inputName.write(to: url.appendingPathExtension("txt"), atomically: true, encoding: .utf8)
             try data.write(to: url, options: [.atomic, .completeFileProtection])
         } catch {
             print(error.localizedDescription)
@@ -97,11 +97,17 @@ struct ContentView: View {
 
     }
     
-    func getDocumentDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .userDirectory, in: .userDomainMask)
+   static func getDocumentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
         //dont have time today, i will finish tomorrow.
     }
+    
+    init(people: Binding<Results>) {
+           _people = people
+           let loadedPeople = Results.loadFromFile()
+           _people.wrappedValue.results = loadedPeople
+       }
 }
 
 struct ContentView_Previews: PreviewProvider {

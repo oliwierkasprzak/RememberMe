@@ -6,25 +6,14 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct DetailView: View {
     var image: Image
     var name: String
+    var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
     var body: some View {
-        VStack {
-            
-            Text(name)
-                .font(.title2)
-                .fontDesign(.rounded)
-                .padding(.top, 30)
-            image
-                .resizable()
-                .scaledToFit()
-                .padding()
-            
-            Spacer()
-                
-        }
+        Map(coordinateRegion: $mapRegion)
     }
 }
 
