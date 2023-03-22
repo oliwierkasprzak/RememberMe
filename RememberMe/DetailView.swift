@@ -11,9 +11,10 @@ import MapKit
 struct DetailView: View {
     var image: Image
     var name: String
-    var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
+    @State var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
     var body: some View {
         Map(coordinateRegion: $mapRegion)
+            .ignoresSafeArea()
     }
 }
 
