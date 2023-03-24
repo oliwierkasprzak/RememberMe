@@ -5,18 +5,32 @@
 //  Created by Oliwier Kasprzak on 15/03/2023.
 //
 
+import CoreLocation
 import Foundation
 import SwiftUI
 
-class People: Codable, Identifiable, ObservableObject {
+struct Location: Identifiable {
+    let id = UUID()
+    let coordinates: CLLocationCoordinate2D
+}
+
+struct People: Codable, Identifiable {
     var id = UUID()
     var name: String 
     var image: Data?
+    var longitude: Double
+    var latitude: Double
     
-    init(id: UUID = UUID(), name: String, image: Data) {
-        self.id = id
-        self.name = name
-        self.image = image
+//    init(id: UUID = UUID(), name: String, image: Data, longitude: Double, latitude: Double) {
+//        self.id = id
+//        self.name = name
+//        self.image = image
+//        self.longitude = longitude
+//        self.latitude = latitude
+//    }
+    
+    var coordinates: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
 

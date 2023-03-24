@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     @Binding var people: Results
+    
     @State private var image: Image?
     @State private var inputImage: UIImage?
     @State private var showingPicker = false
@@ -24,7 +26,7 @@ struct ContentView: View {
                 LazyVGrid(columns: columns) {
                     ForEach(people.results.reversed()) { picture in
                         NavigationLink {
-                            DetailView(image: Image(uiImage: UIImage(data: picture.image!)!), name: picture.name)
+                            DetailView(image: Image(uiImage: UIImage(data: picture.image!)!), name: picture.name, people: picture)
                         } label: {
                             VStack {
                                 Image(uiImage: UIImage(data: picture.image!)!)
@@ -57,6 +59,7 @@ struct ContentView: View {
             .toolbar {
                 Button {
                     showingPicker = true
+                    
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -70,7 +73,9 @@ struct ContentView: View {
             .alert("Provide name", isPresented: $showingAlert) {
                 TextField("Provide name", text: $inputName)
                 Button("OK") {
+                    DetailView.locationFetcher.start()
                     loadImage()
+                    
                 }
             }
         }
@@ -83,8 +88,9 @@ struct ContentView: View {
         }
         
         image = Image(uiImage: inputImage)
-        let user = People(name: inputName, image: data)
+        let user = People(name: inputName, image: data, longitude: findLocation().longitude, latitude: findLocation().latitude)
         people.results.append(user)
+        
         let url = ContentView.getDocumentDirectory().appendingPathComponent("\(user.id.uuidString).jpg")
         
         do {
@@ -98,7 +104,7 @@ struct ContentView: View {
     }
     
    static func getDocumentDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+       let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
         //dont have time today, i will finish tomorrow.
     }
@@ -108,6 +114,18 @@ struct ContentView: View {
            let loadedPeople = Results.loadFromFile()
            _people.wrappedValue.results = loadedPeople
        }
+    
+    func findLocation() -> CLLocationCoordinate2D {
+        
+        if let location = DetailView.locationFetcher.lastKnownLocation {
+           
+            return location
+        } else {
+            print("Default values applied.")
+        }
+        return CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

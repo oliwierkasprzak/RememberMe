@@ -285,6 +285,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to use Map with your location.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your data.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the app to see your photo library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -325,6 +326,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to use Map with your location.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your data.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the app to see your photo library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
