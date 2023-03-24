@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F5E40BA29CB9FE20025B972 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E40B929CB9FE20025B972 /* LocationFetcher.swift */; };
 		4FA497E929C240060051B40A /* RememberMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA497E829C240060051B40A /* RememberMeApp.swift */; };
 		4FA497EB29C240060051B40A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA497EA29C240060051B40A /* ContentView.swift */; };
 		4FA497ED29C240080051B40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FA497EC29C240080051B40A /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F5E40B929CB9FE20025B972 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 		4FA497E529C240060051B40A /* RememberMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RememberMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA497E829C240060051B40A /* RememberMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RememberMeApp.swift; sourceTree = "<group>"; };
 		4FA497EA29C240060051B40A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				4FA4980029C246CC0051B40A /* ImagePicker.swift */,
 				4FA497FE29C244BC0051B40A /* People.swift */,
 				4FA497FA29C240280051B40A /* DetailView.swift */,
+				4F5E40B929CB9FE20025B972 /* LocationFetcher.swift */,
 				4FA497EC29C240080051B40A /* Assets.xcassets */,
 				4FA497EE29C240080051B40A /* RememberMe.entitlements */,
 				4FA497EF29C240080051B40A /* Preview Content */,
@@ -150,6 +153,7 @@
 			files = (
 				4FA497EB29C240060051B40A /* ContentView.swift in Sources */,
 				4FA497FB29C240280051B40A /* DetailView.swift in Sources */,
+				4F5E40BA29CB9FE20025B972 /* LocationFetcher.swift in Sources */,
 				4FA4980129C246CC0051B40A /* ImagePicker.swift in Sources */,
 				4FA497E929C240060051B40A /* RememberMeApp.swift in Sources */,
 				4FA497FF29C244BC0051B40A /* People.swift in Sources */,
@@ -281,6 +285,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to use Map with your location.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your data.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the app to see your photo library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -321,6 +326,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to use Map with your location.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your data.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need the app to see your photo library.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
