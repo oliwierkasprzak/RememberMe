@@ -21,34 +21,46 @@ struct People: Codable, Identifiable {
     var longitude: Double
     var latitude: Double
     
-//    init(id: UUID = UUID(), name: String, image: Data, longitude: Double, latitude: Double) {
-//        self.id = id
-//        self.name = name
-//        self.image = image
-//        self.longitude = longitude
-//        self.latitude = latitude
-//    }
-    
     var coordinates: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
 
-class Results: ObservableObject {
+class Results: Codable, ObservableObject {
     var results = [People]()
     
-    static func loadFromFile() -> [People] {
-        let url = ContentView.getDocumentDirectory().appendingPathComponent("people.txt")
+    init() {
         
-        guard let data = try? Data(contentsOf: url) else {
-                  return []
-              }
-              let decoder = JSONDecoder()
-              guard let decoded = try? decoder.decode([People].self, from: data) else {
-                  return []
-              }
-              return decoded
-          }
+        let url = getDocumentsDirectory().appendingPathComponent("people.json")
+        do {
+            let data = try? Data(contentsOf: url)
+            let decoded = try JSONDecoder().decode([People].self, from: data ?? Data([]))
+            results = decoded
+            print("smiga")
+            return
+        } catch {
+            print("nie smiga elegancko")
+            print(error.localizedDescription)
+            print(url)
+            results = []
+        }
+    }
     
+    func save(people: [People]) {
+        let url = getDocumentsDirectory().appendingPathComponent("people.json")
+        do {
+            let data = try? JSONEncoder().encode(people)
+            try data?.write(to: url, options: [.atomic, .completeFileProtection])
+            
+        } catch {
+            
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
 }
 

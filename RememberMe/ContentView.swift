@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var showingPicker = false
     @State private var inputName = ""
     @State private var showingAlert = false
+    
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -89,31 +90,14 @@ struct ContentView: View {
         
         image = Image(uiImage: inputImage)
         let user = People(name: inputName, image: data, longitude: findLocation().longitude, latitude: findLocation().latitude)
+        print(user)
         people.results.append(user)
+        people.save(people: people.results)
         
-        let url = ContentView.getDocumentDirectory().appendingPathComponent("\(user.id.uuidString).jpg")
-        
-        do {
-            try inputName.write(to: url.appendingPathExtension("txt"), atomically: true, encoding: .utf8)
-            try data.write(to: url, options: [.atomic, .completeFileProtection])
-        } catch {
-            print(error.localizedDescription)
-        }
-        inputName = ""
+       inputName = ""
 
     }
-    
-   static func getDocumentDirectory() -> URL {
-       let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-        //dont have time today, i will finish tomorrow.
-    }
-    
-    init(people: Binding<Results>) {
-           _people = people
-           let loadedPeople = Results.loadFromFile()
-           _people.wrappedValue.results = loadedPeople
-       }
+
     
     func findLocation() -> CLLocationCoordinate2D {
         
