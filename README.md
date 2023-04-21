@@ -1,2 +1,2 @@
 # RememberMe
-Milestone Challenge of day 77 - ImagePicker with Core Data
+Milestone Challenge of day 77 - ImagePicker with DocumentsDirectory saving.
